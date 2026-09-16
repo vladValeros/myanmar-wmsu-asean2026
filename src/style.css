@@ -1,23 +1,146 @@
+/* Phase 1: minimal placeholder styling only.
+   No color palette or custom fonts yet — that's Phase 2. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
 }
 
 #app {
-  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  width: 100%;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 1.25rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.hero {
   text-align: center;
+  background: #f4f4f4;
+}
+
+.hero .subheadline {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.hero .intro-line {
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-credit {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.quick-facts {
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.quick-facts li {
+  margin-bottom: 0.5rem;
+}
+
+.relic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.relic-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.relic-card p {
+  margin-bottom: 0;
+}
+
+.model-viewer-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  margin-bottom: 1.5rem;
+  border: 1px dashed #999;
+  border-radius: 4px;
+  color: #777;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.ar-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  background: #f4f4f4;
+  cursor: pointer;
+}
+
+.ar-fallback {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.small-print {
+  font-size: 0.75rem;
+  color: #555;
+  word-break: break-word;
 }
