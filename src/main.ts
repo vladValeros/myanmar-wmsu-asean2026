@@ -93,10 +93,21 @@ if (!prefersReducedMotion) {
   const heroCutoutWrap = document.querySelector<HTMLElement>(
     '.hero-pagoda-cutout-wrap'
   );
-  const heroContent = document.querySelector<HTMLElement>('.hero-content');
+  const heroSubheadline = document.querySelector<HTMLElement>('.hero .subheadline');
+  const heroHeadline = document.querySelector<HTMLElement>('.hero h1');
+  // Built as an explicit array (not a combined selector string) because
+  // querySelectorAll/GSAP's selector engine returns matches in DOM order —
+  // h1 comes before .subheadline in the markup (for reading order), which
+  // would silently reverse the intended stagger sequence below.
+  const heroText = [heroSubheadline, heroHeadline].filter(
+    (el): el is HTMLElement => el !== null
+  );
 
   const heroTimeline = gsap.timeline();
-  heroTimeline.from('.hero h1, .hero .subheadline', {
+  // Subheadline sits visually above the headline now (CSS `order`), so it
+  // leads the entrance stagger — top-to-bottom reveal matching the new
+  // visual layout, even though the headline stays first in DOM/reading order.
+  heroTimeline.from(heroText, {
     opacity: 0,
     y: 20,
     duration: 0.8,
@@ -131,9 +142,9 @@ if (!prefersReducedMotion) {
 
   // Subtle scroll parallax: the cutout and the text drift at slightly
   // different rates as the hero scrolls past. Applied to the wrapper (not
-  // the image itself) and to .hero-content (not h1/subheadline directly)
-  // so these scroll-driven `y` tweens never target the same property on
-  // the same element as the entrance/idle tweens above.
+  // the image itself) and to the h1/subheadline pair (not the wrapper they
+  // used to share) so these scroll-driven `y` tweens never target the same
+  // property on the same element as the entrance/idle tweens above.
   if (heroCutoutWrap) {
     gsap.to(heroCutoutWrap, {
       y: 40,
@@ -146,8 +157,8 @@ if (!prefersReducedMotion) {
       },
     });
   }
-  if (heroContent) {
-    gsap.to(heroContent, {
+  if (heroText.length) {
+    gsap.to(heroText, {
       y: -20,
       ease: 'none',
       scrollTrigger: {

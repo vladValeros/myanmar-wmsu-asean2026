@@ -14,13 +14,7 @@ Shwedagon Pagoda
 **Subheadline:**
 The Great Golden Mountain of Myanmar
 
-**Intro line:**
-Rising above the city of Yangon, the Shwedagon Pagoda has stood as Myanmar's most sacred site for longer than most nations have existed. This is its story.
-
-*[Section notes: full-bleed hero with the pagoda render or hero photo, gold gradient overlay, Myanmar flag colors as accent, scroll-down indicator.]*
-
-**Footer credit line (small text, bottom of hero):**
-An ASEAN Week 2026 collaboration between the College of Architecture and the College of Computing Studies, Western Mindanao State University.
+*[Section notes: full-bleed hero with the pagoda photo, gold-tinted scrim, Myanmar flag colors as accent. The intro line and footer credit line that used to live here have been removed — the full credits already live in Section 8 with logos, no need to duplicate them in the hero. Headline renders in all caps via CSS `text-transform: uppercase`; the copy itself stays title case here.]*
 
 ---
 

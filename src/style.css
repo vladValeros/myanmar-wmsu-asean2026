@@ -125,6 +125,28 @@ p {
   background: var(--gold-deep-dark);
 }
 
+/* h1 and subheadline are direct flex children of .hero (siblings of the
+   decorative photo layers below), not wrapped in a shared container. This
+   lets the pagoda cutout sit in z-index BETWEEN them: in front of the
+   headline (so its silhouette visibly overlaps the crown/spire area the
+   headline now sits over) but behind the subheadline, which stays clear in
+   the open sky higher up. `order` decouples this visual stacking from DOM
+   order, which keeps the headline (h1) before the subheadline in reading
+   order for assistive tech. */
+.hero h1 {
+  order: 2;
+  position: relative;
+  z-index: 2;
+  margin: 26vh 0 0;
+}
+
+.hero .subheadline {
+  order: 1;
+  position: relative;
+  z-index: 4;
+  margin: 0;
+}
+
 .hero-bg,
 .hero-pagoda-cutout-wrap {
   position: absolute;
@@ -152,22 +174,30 @@ p {
   z-index: 0;
 }
 
+/* Sits above the headline (z-index 2) so its opaque pixels visibly cover
+   part of the crown/spire text overlap. Doesn't need to sit above the tint
+   any more — the only text that used to overlap the cutout's bright/wide
+   lower body (the old intro-line/footer-credit) is gone; the subheadline
+   that remains always stays in the clear sky above the cutout's full
+   extent, and the headline is now deliberately BEHIND the cutout, so its
+   own visible (non-covered) portions read against the tinted bg photo, not
+   against the cutout. */
 .hero-pagoda-cutout-wrap {
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
 }
 
-/* Gold-tinted scrim: MUST sit above the cutout, not just the flat bg photo —
-   the cutout is pixel-aligned to the same bright pagoda, so if the tint sat
-   underneath it (as an earlier version of this did), it would darken the bg
-   photo but do nothing to the cutout sitting on top of it, silently
-   defeating the whole contrast fix wherever the cutout is opaque. Strongest
-   near the top where the headline sits, fading to fully clear by the
+/* Gold-tinted scrim darkens the raw bg photo. Sits above the bg but below
+   the headline, so the headline text itself always stays crisp/undimmed —
+   only the photo behind it gets darkened for contrast. (An earlier version
+   of this put the tint above the headline too, which muddied the white
+   text into a dim brownish-gray instead of actually improving contrast.)
+   Strongest near the top where the text sits, fading to fully clear by the
    bottom so the pagoda glows through undimmed there. */
 .hero-tint {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   background: linear-gradient(
     180deg,
     rgba(20, 14, 4, 0.85) 0%,
@@ -178,13 +208,9 @@ p {
   );
 }
 
-.hero-content {
-  position: relative;
-  z-index: 3;
-  padding-top: 1rem;
-}
-
 .hero h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--color-surface);
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
@@ -194,21 +220,6 @@ p {
   font-weight: 600;
   color: var(--color-surface);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
-}
-
-.hero .intro-line {
-  max-width: 32rem;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--color-surface);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-}
-
-.hero-credit {
-  margin-top: 2rem;
-  font-size: 0.75rem;
-  color: var(--color-surface);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- Name section ---------- */
