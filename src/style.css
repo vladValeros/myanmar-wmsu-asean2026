@@ -1,5 +1,6 @@
-/* Phase 1: minimal placeholder styling only.
-   No color palette or custom fonts yet — that's Phase 2. */
+/* Phase 2: visual design system — palette, type, gradient hero, relic cards.
+   Scroll-driven animation lives in main.ts (GSAP); this file only sets the
+   "final state" appearance that GSAP animates from/to. */
 
 *,
 *::before,
@@ -9,14 +10,52 @@
 
 :root {
   color-scheme: light;
+
+  /* Myanmar flag + gold palette */
+  --myanmar-yellow: #fecb00;
+  --myanmar-green: #34b233;
+  --myanmar-red: #ea2839;
+  --myanmar-white: #ffffff;
+  --gold-accent: #d4af37;
+  --gold-deep: #8b6914;
+
+  /* Semantic tokens built from the palette above */
+  --color-bg: #fffaf0;
+  --color-text: #2a1f0d;
+  --color-text-muted: #6b5c3f;
+  --color-border: #e6dcc3;
+  --color-surface: #ffffff;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
-  color: #1a1a1a;
-  background: #ffffff;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* Thin Myanmar-flag accent bar, fixed to the very top of the page */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--myanmar-yellow) 0%,
+    var(--myanmar-yellow) 33.33%,
+    var(--myanmar-green) 33.33%,
+    var(--myanmar-green) 66.66%,
+    var(--myanmar-red) 66.66%,
+    var(--myanmar-red) 100%
+  );
+  z-index: 100;
 }
 
 #app {
@@ -29,7 +68,7 @@ body {
   max-width: 640px;
   margin: 0 auto;
   padding: 2.5rem 1.25rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .section:last-child {
@@ -39,22 +78,26 @@ body {
 h1,
 h2,
 h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
   line-height: 1.25;
   margin-top: 0;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: 1rem;
+  color: var(--gold-deep);
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 0.5rem;
 }
 
@@ -62,27 +105,47 @@ p {
   margin: 0 0 1rem;
 }
 
+/* ---------- Hero ---------- */
+
 .hero {
+  max-width: none;
   text-align: center;
-  background: #f4f4f4;
+  padding: 5rem 1.25rem;
+  background: linear-gradient(
+    160deg,
+    var(--gold-deep) 0%,
+    var(--gold-accent) 45%,
+    var(--myanmar-yellow) 100%
+  );
+  color: var(--color-surface);
+  border-bottom: none;
+}
+
+.hero h1 {
+  color: var(--color-surface);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .hero .subheadline {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .hero .intro-line {
   max-width: 32rem;
   margin-left: auto;
   margin-right: auto;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-credit {
   margin-top: 2rem;
   font-size: 0.75rem;
-  color: #555;
+  color: rgba(255, 255, 255, 0.75);
 }
+
+/* ---------- Name section ---------- */
 
 .quick-facts {
   padding-left: 1.25rem;
@@ -93,22 +156,64 @@ p {
   margin-bottom: 0.5rem;
 }
 
+/* ---------- Relics ---------- */
+
 .relic-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
 .relic-card {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1rem;
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--gold-accent);
+  border-radius: 6px;
+  padding: 1.5rem 1.25rem 1.25rem;
+  box-shadow: 0 2px 10px rgba(139, 105, 20, 0.06);
 }
 
 .relic-card p {
   margin-bottom: 0;
+  color: var(--color-text-muted);
 }
+
+.relic-direction {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+  color: #3a2c00;
+  background: var(--gold-accent);
+}
+
+.relic-card[data-direction='east'] .relic-direction {
+  background: var(--myanmar-yellow);
+}
+
+.relic-card[data-direction='south'] .relic-direction {
+  background: var(--myanmar-green);
+  color: var(--color-surface);
+}
+
+.relic-card[data-direction='west'] .relic-direction {
+  background: var(--myanmar-red);
+  color: var(--color-surface);
+}
+
+.relic-card[data-direction='north'] .relic-direction {
+  background: var(--gold-accent);
+  color: #3a2c00;
+}
+
+/* ---------- AR section ---------- */
 
 .model-viewer-placeholder {
   display: flex;
@@ -116,31 +221,54 @@ p {
   justify-content: center;
   min-height: 220px;
   margin-bottom: 1.5rem;
-  border: 1px dashed #999;
-  border-radius: 4px;
-  color: #777;
+  border: 1px dashed var(--gold-accent);
+  border-radius: 6px;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   text-align: center;
+  background: rgba(212, 175, 55, 0.06);
 }
 
 .ar-button {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 1.75rem;
   margin-bottom: 1.5rem;
+  font-family: var(--font-body);
   font-size: 1rem;
-  border: 1px solid #1a1a1a;
+  font-weight: 600;
+  color: var(--color-surface);
+  border: none;
   border-radius: 4px;
-  background: #f4f4f4;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-accent));
   cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.ar-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 .ar-fallback {
   font-size: 0.85rem;
-  color: #555;
+  color: var(--color-text-muted);
 }
+
+/* ---------- Footer / credits ---------- */
 
 .small-print {
   font-size: 0.75rem;
-  color: #555;
+  color: var(--color-text-muted);
   word-break: break-word;
+}
+
+/* ---------- Reduced motion safety net ----------
+   GSAP handles the primary skip logic in main.ts. This is a CSS-level
+   backstop so nothing relies solely on JS having run correctly. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
