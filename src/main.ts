@@ -8,14 +8,24 @@ import './style.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import type { ModelViewerElement } from '@google/model-viewer';
+
 gsap.registerPlugin(ScrollTrigger);
 
 // <model-viewer> bundles a full three.js-based renderer (~300KB gzipped) —
 // too heavy to ship on every page load on a weak connection. Load it only
 // once a visitor actually scrolls near the section that needs it.
 const arSection = document.querySelector('#ar');
-const pagodaModel = document.querySelector<HTMLElement>('#pagoda-model');
+const pagodaModel = document.querySelector<ModelViewerElement>('#pagoda-model');
 const pagodaLoading = document.querySelector<HTMLElement>('#pagoda-loading');
+const arActivateButton = document.querySelector<HTMLButtonElement>(
+  '#ar-activate-button'
+);
+const arFallback = document.querySelector<HTMLElement>('#ar-fallback');
+
+arActivateButton?.addEventListener('click', () => {
+  pagodaModel?.activateAR();
+});
 
 if (arSection && pagodaModel) {
   const modelViewerLoader = new IntersectionObserver(
@@ -25,7 +35,18 @@ if (arSection && pagodaModel) {
         pagodaLoading?.classList.add('is-visible');
         pagodaModel.addEventListener(
           'load',
-          () => pagodaLoading?.classList.remove('is-visible'),
+          () => {
+            pagodaLoading?.classList.remove('is-visible');
+            // canActivateAR reflects real platform support (WebXR / Scene
+            // Viewer / Quick Look), determined by model-viewer itself — by
+            // the time the model has finished loading, that check has long
+            // since resolved.
+            if (pagodaModel.canActivateAR) {
+              arActivateButton?.classList.add('is-visible');
+            } else {
+              arFallback?.classList.add('is-visible');
+            }
+          },
           { once: true }
         );
 

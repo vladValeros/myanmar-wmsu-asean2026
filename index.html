@@ -153,14 +153,18 @@
               camera-controls
               auto-rotate
               loading="lazy"
+              ar
+              ios-src="/assets/models/shwedagon-pagoda.usdz"
             ></model-viewer>
             <div class="pagoda-loading" id="pagoda-loading" role="status" aria-live="polite">
               <span class="pagoda-spinner" aria-hidden="true"></span>
               Loading 3D model&hellip;
             </div>
           </div>
-          <button type="button" class="ar-button">View in AR</button>
-          <p class="ar-fallback">
+          <button type="button" class="ar-button" id="ar-activate-button">
+            View in AR
+          </button>
+          <p class="ar-fallback" id="ar-fallback">
             AR isn't available on this device, but you can still rotate and
             explore the model above.
           </p>

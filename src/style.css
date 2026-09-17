@@ -271,7 +271,7 @@ p {
 }
 
 .ar-button {
-  display: inline-block;
+  display: none;
   padding: 0.85rem 1.75rem;
   margin-bottom: 1.5rem;
   font-family: var(--font-body);
@@ -285,14 +285,23 @@ p {
   transition: filter 0.2s ease, transform 0.2s ease;
 }
 
+.ar-button.is-visible {
+  display: inline-block;
+}
+
 .ar-button:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
 .ar-fallback {
+  display: none;
   font-size: 0.85rem;
   color: var(--color-text-muted);
+}
+
+.ar-fallback.is-visible {
+  display: block;
 }
 
 /* ---------- Footer / credits ---------- */
