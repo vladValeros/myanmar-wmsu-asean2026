@@ -10,6 +10,48 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// <model-viewer> bundles a full three.js-based renderer (~300KB gzipped) —
+// too heavy to ship on every page load on a weak connection. Load it only
+// once a visitor actually scrolls near the section that needs it.
+const arSection = document.querySelector('#ar');
+const pagodaModel = document.querySelector<HTMLElement>('#pagoda-model');
+const pagodaLoading = document.querySelector<HTMLElement>('#pagoda-loading');
+
+if (arSection && pagodaModel) {
+  const modelViewerLoader = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        modelViewerLoader.disconnect();
+        pagodaLoading?.classList.add('is-visible');
+        pagodaModel.addEventListener(
+          'load',
+          () => pagodaLoading?.classList.remove('is-visible'),
+          { once: true }
+        );
+
+        import('@google/model-viewer').then(({ ModelViewerElement }) => {
+          // Must be set before `src` is assigned: model-viewer starts loading
+          // as soon as `src` appears, and needs the decoder location wired up
+          // first to handle this meshopt-compressed glb. The URL just needs
+          // to resolve — the actual decoder is already bundled via
+          // model-viewer's own static import of three's meshopt module; this
+          // local no-op file only exists so nothing depends on a CDN being
+          // reachable.
+          ModelViewerElement.meshoptDecoderLocation =
+            '/vendor/meshopt-decoder-init.js';
+          pagodaModel.setAttribute(
+            'src',
+            '/assets/models/shwedagon-pagoda.glb'
+          );
+        });
+      }
+    },
+    { rootMargin: '200px' }
+  );
+
+  modelViewerLoader.observe(arSection);
+}
+
 const prefersReducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)'
 ).matches;

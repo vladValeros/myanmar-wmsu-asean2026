@@ -215,18 +215,59 @@ p {
 
 /* ---------- AR section ---------- */
 
-.model-viewer-placeholder {
-  display: flex;
+.pagoda-model-wrap {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.pagoda-model {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: rgba(212, 175, 55, 0.06);
+  --poster-color: transparent;
+}
+
+.pagoda-loading {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 220px;
-  margin-bottom: 1.5rem;
-  border: 1px dashed var(--gold-accent);
+  gap: 0.75rem;
   border-radius: 6px;
+  background: var(--color-bg);
   color: var(--color-text-muted);
   font-size: 0.9rem;
-  text-align: center;
-  background: rgba(212, 175, 55, 0.06);
+  pointer-events: none;
+}
+
+.pagoda-loading.is-visible {
+  display: flex;
+}
+
+.pagoda-spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--gold-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pagoda-spinner {
+    animation: pagoda-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes pagoda-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .ar-button {

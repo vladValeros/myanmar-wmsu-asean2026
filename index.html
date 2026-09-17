@@ -145,8 +145,19 @@
             Tap below to place a 3D model of the Shwedagon Pagoda right in
             front of you, using your phone's camera.
           </p>
-          <div class="model-viewer-placeholder" aria-hidden="true">
-            [3D model viewer placeholder]
+          <div class="pagoda-model-wrap">
+            <model-viewer
+              id="pagoda-model"
+              class="pagoda-model"
+              alt="A rotating 3D model of the Shwedagon Pagoda"
+              camera-controls
+              auto-rotate
+              loading="lazy"
+            ></model-viewer>
+            <div class="pagoda-loading" id="pagoda-loading" role="status" aria-live="polite">
+              <span class="pagoda-spinner" aria-hidden="true"></span>
+              Loading 3D model&hellip;
+            </div>
           </div>
           <button type="button" class="ar-button">View in AR</button>
           <p class="ar-fallback">
