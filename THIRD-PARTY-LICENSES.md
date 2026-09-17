@@ -22,8 +22,9 @@ cutout of the same photo, `public/assets/images/hero-pagoda-cutout.png`/`.webp`.
 
 ## Chinthe Photo
 
-Source: https://commons.wikimedia.org/wiki/File:Sư_tử_thần.jpg (Wikimedia Commons)
+"Sư tử thần.jpg" by Bùi Thụy Đào Nguyên, resized for web, licensed under
+CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via
+Wikimedia Commons
+(https://commons.wikimedia.org/wiki/File:S%C6%B0_t%E1%BB%AD_th%E1%BA%A7n.jpg)
 
-**License pending confirmation** — do not treat this as cleared. Used as
-`public/assets/images/chinthe.jpg`. Swap in the exact required license text
-once confirmed.
+Used as `public/assets/images/chinthe.jpg`.
