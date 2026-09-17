@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Raw, uncompressed source assets (large; processed output lives in public/)
+raw-assets/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
