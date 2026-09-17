@@ -1,0 +1,31 @@
+diff --git a/node_modules/@google/model-viewer/lib/model-viewer-base.js b/node_modules/@google/model-viewer/lib/model-viewer-base.js
+index df2f31a..cd5ec09 100644
+--- a/node_modules/@google/model-viewer/lib/model-viewer-base.js
++++ b/node_modules/@google/model-viewer/lib/model-viewer-base.js
+@@ -166,7 +166,6 @@ export default class ModelViewerElementBase extends ReactiveElement {
+             const targetNode = customEv.target;
+             const extraModels = Array.from(this.querySelectorAll('extra-model'));
+             const childIndex = extraModels.indexOf(targetNode);
+-            console.log(`[onExtraModelChanged] childIndex: ${childIndex} srcChanged: ${customEv.detail.srcChanged} offset: ${customEv.detail.offset}`);
+             if (childIndex === -1)
+                 return;
+             const modelIndex = this.src ? childIndex + 1 : childIndex;
+@@ -260,7 +259,6 @@ export default class ModelViewerElementBase extends ReactiveElement {
+                         const oldVisibility = this.modelIsVisible;
+                         this[$isElementInViewport] = entry.isIntersecting;
+                         this[$announceModelVisibility](oldVisibility);
+-                        console.log(`IntersectionObserver fired! isIntersecting: ${entry.isIntersecting}`);
+                         if (this[$isElementInViewport] && !this.loaded) {
+                             this[$updateSource]();
+                         }
+@@ -519,10 +517,8 @@ export default class ModelViewerElementBase extends ReactiveElement {
+         const extraModels = Array.from(this.querySelectorAll('extra-model'));
+         const extraUrlsList = extraModels.map(m => m.src).filter(src => src != null);
+         const extraUrlsMatch = extraUrlsList.join(',') === (scene.extraUrls || []).join(',');
+-        console.log(`[$updateSource] called! \nsrc: ${this.src}\nextraUrls: ${extraUrlsList.join(',')}\nloaded: ${this.loaded}`);
+         if (this.loaded || !this[$shouldAttemptPreload]() ||
+             (this.src === scene.url && extraUrlsMatch)) {
+-            console.log('[$updateSource] BAILING OUT EARLY!');
+             return;
+         }
+         const source = this.src;
