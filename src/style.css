@@ -112,35 +112,88 @@ p {
 /* ---------- Hero ---------- */
 
 .hero {
+  position: relative;
   max-width: none;
+  overflow: hidden;
   text-align: center;
-  padding: 5rem 1.25rem;
-  /* Stays dark (gold-deep-dark) through 85% of the hero's height, which
-     comfortably covers every line of text, then blooms into gold-accent
-     and myanmar-yellow only in the final stretch below all of it — the
-     visible "gold gradient" flourish without dragging white text through
-     colors too light for it to stay readable against. */
-  background: linear-gradient(
-    160deg,
-    var(--gold-deep-dark) 0%,
-    var(--gold-deep-dark) 85%,
-    var(--gold-accent) 95%,
-    var(--myanmar-yellow) 100%
-  );
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1.25rem 2.5rem;
   color: var(--color-surface);
   border-bottom: none;
+  background: var(--gold-deep-dark);
+}
+
+.hero-bg,
+.hero-pagoda-cutout-wrap {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-bg img,
+.hero-pagoda-cutout {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Must match exactly between the two images — same source photo, same
+     crop math, so the cutout lands precisely on the pagoda in the bg photo
+     regardless of viewport aspect ratio. Biased toward the top so the sky
+     (where the headline sits) and the spire stay visible on narrow/tall
+     mobile crops rather than defaulting to dead-center. */
+  object-position: center 30%;
+}
+
+.hero-bg {
+  z-index: 0;
+}
+
+.hero-pagoda-cutout-wrap {
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Gold-tinted scrim: MUST sit above the cutout, not just the flat bg photo —
+   the cutout is pixel-aligned to the same bright pagoda, so if the tint sat
+   underneath it (as an earlier version of this did), it would darken the bg
+   photo but do nothing to the cutout sitting on top of it, silently
+   defeating the whole contrast fix wherever the cutout is opaque. Strongest
+   near the top where the headline sits, fading to fully clear by the
+   bottom so the pagoda glows through undimmed there. */
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 14, 4, 0.85) 0%,
+    rgba(45, 34, 8, 0.8) 35%,
+    rgba(65, 49, 11, 0.68) 60%,
+    rgba(100, 76, 15, 0.4) 82%,
+    rgba(139, 105, 20, 0) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding-top: 1rem;
 }
 
 .hero h1 {
   color: var(--color-surface);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
 .hero .subheadline {
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-surface);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hero .intro-line {
@@ -148,14 +201,14 @@ p {
   margin-left: auto;
   margin-right: auto;
   color: var(--color-surface);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .hero-credit {
   margin-top: 2rem;
   font-size: 0.75rem;
   color: var(--color-surface);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- Name section ---------- */
@@ -234,6 +287,43 @@ p {
 .relic-card[data-direction='north'] .relic-direction {
   background: var(--gold-accent);
   color: #3a2c00;
+}
+
+.relic-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0.75rem 0 0.6rem;
+  color: var(--gold-deep);
+}
+
+.relic-card[data-direction='east'] .relic-icon {
+  color: #a3820a;
+}
+
+.relic-card[data-direction='south'] .relic-icon {
+  color: var(--myanmar-green);
+}
+
+.relic-card[data-direction='west'] .relic-icon {
+  color: var(--myanmar-red);
+}
+
+.relic-card[data-direction='north'] .relic-icon {
+  color: var(--gold-deep);
+}
+
+/* ---------- Chinthe ---------- */
+
+.chinthe-photo {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px rgba(139, 105, 20, 0.12);
 }
 
 /* ---------- AR section ---------- */

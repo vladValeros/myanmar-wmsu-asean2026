@@ -11,18 +11,34 @@
   <body>
     <div id="app">
       <header class="section hero" id="hero">
-        <h1>Shwedagon Pagoda</h1>
-        <p class="subheadline">The Great Golden Mountain of Myanmar</p>
-        <p class="intro-line">
-          Rising above the city of Yangon, the Shwedagon Pagoda has stood as
-          Myanmar's most sacred site for longer than most nations have
-          existed. This is its story.
-        </p>
-        <p class="hero-credit">
-          An ASEAN Week 2026 collaboration between the College of
-          Architecture and the College of Computing Studies, Western
-          Mindanao State University.
-        </p>
+        <picture class="hero-bg">
+          <source srcset="/assets/images/hero-bg.webp" type="image/webp" />
+          <img src="/assets/images/hero-bg.jpg" alt="" role="presentation" />
+        </picture>
+        <div class="hero-tint" aria-hidden="true"></div>
+        <picture class="hero-pagoda-cutout-wrap" id="hero-cutout">
+          <source srcset="/assets/images/hero-pagoda-cutout.webp" type="image/webp" />
+          <img
+            src="/assets/images/hero-pagoda-cutout.png"
+            alt=""
+            role="presentation"
+            class="hero-pagoda-cutout"
+          />
+        </picture>
+        <div class="hero-content">
+          <h1>Shwedagon Pagoda</h1>
+          <p class="subheadline">The Great Golden Mountain of Myanmar</p>
+          <p class="intro-line">
+            Rising above the city of Yangon, the Shwedagon Pagoda has stood as
+            Myanmar's most sacred site for longer than most nations have
+            existed. This is its story.
+          </p>
+          <p class="hero-credit">
+            An ASEAN Week 2026 collaboration between the College of
+            Architecture and the College of Computing Studies, Western
+            Mindanao State University.
+          </p>
+        </div>
       </header>
 
       <main>
@@ -93,6 +109,21 @@
           <div class="relic-grid">
             <article class="relic-card" data-direction="east">
               <span class="relic-direction">East</span>
+              <svg
+                class="relic-icon"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="24" cy="7" r="3.5" />
+                <line x1="24" y1="10.5" x2="24" y2="42" />
+                <line x1="17" y1="15" x2="31" y2="15" />
+                <line x1="18.5" y1="20" x2="29.5" y2="20" />
+              </svg>
               <h3>Kakusandha Buddha</h3>
               <p>
                 Honored with his staff, said to have been enshrined at the
@@ -101,6 +132,23 @@
             </article>
             <article class="relic-card" data-direction="south">
               <span class="relic-direction">South</span>
+              <svg
+                class="relic-icon"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="20" y1="8" x2="26" y2="8" />
+                <line x1="23" y1="8" x2="23" y2="13" />
+                <path
+                  d="M15 22 Q15 13 23 13 Q31 13 31 22 L31 33 Q31 39 23 39 Q15 39 15 33 Z"
+                />
+                <path d="M31 21 L39 17" />
+              </svg>
               <h3>Konagamana Buddha</h3>
               <p>
                 Honored with his water filter, one of the pagoda's oldest
@@ -109,11 +157,41 @@
             </article>
             <article class="relic-card" data-direction="west">
               <span class="relic-direction">West</span>
+              <svg
+                class="relic-icon"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M10 17 Q24 11 38 17" />
+                <path d="M10 25 Q24 19 38 25" />
+                <path d="M10 33 Q24 27 38 33" />
+                <line x1="10" y1="17" x2="10" y2="33" />
+                <line x1="38" y1="17" x2="38" y2="33" />
+              </svg>
               <h3>Kassapa Buddha</h3>
               <p>Honored with a piece of his robe.</p>
             </article>
             <article class="relic-card" data-direction="north">
               <span class="relic-direction">North</span>
+              <svg
+                class="relic-icon"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14 36 C12 26 13 16 24 14 C35 12 35 24 27 25 C21 26 20 19 27 19.5"
+                />
+              </svg>
               <h3>Gautama Buddha</h3>
               <p>
                 Honored with the eight strands of hair that began it all.
@@ -130,6 +208,14 @@
 
         <section class="section" id="chinthe">
           <h2>Half Lion, Wholly Legend</h2>
+          <img
+            src="/assets/images/chinthe.jpg"
+            alt="Chinthe guardian statue, Myanmar"
+            class="chinthe-photo"
+            loading="lazy"
+            width="1280"
+            height="1707"
+          />
           <p>
             At each of the pagoda's four entrances stand pairs of Chinthe,
             Myanmar's mythical guardian lions. Lions were never native to

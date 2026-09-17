@@ -86,14 +86,78 @@ function startsBelowFold(el: Element): boolean {
 }
 
 if (!prefersReducedMotion) {
-  // Hero: headline + subheadline animate in immediately on load, no scroll needed.
-  gsap.from('.hero h1, .hero .subheadline', {
+  // Hero: headline + subheadline animate in immediately on load, no scroll
+  // needed, then the pagoda cutout fades/scales in on top of them shortly
+  // after, then settles into a slow idle float.
+  const heroCutout = document.querySelector<HTMLElement>('.hero-pagoda-cutout');
+  const heroCutoutWrap = document.querySelector<HTMLElement>(
+    '.hero-pagoda-cutout-wrap'
+  );
+  const heroContent = document.querySelector<HTMLElement>('.hero-content');
+
+  const heroTimeline = gsap.timeline();
+  heroTimeline.from('.hero h1, .hero .subheadline', {
     opacity: 0,
     y: 20,
     duration: 0.8,
     ease: 'power2.out',
     stagger: 0.1,
   });
+
+  if (heroCutout) {
+    heroTimeline.from(
+      heroCutout,
+      {
+        opacity: 0,
+        scale: 1.08,
+        duration: 1,
+        ease: 'power2.out',
+      },
+      '-=0.3'
+    );
+
+    // Gentle idle float, starting only once the entrance above has fully
+    // settled so it never fights the entrance tween over the same element.
+    heroTimeline.call(() => {
+      gsap.to(heroCutout, {
+        y: '+=4',
+        duration: 3.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+    });
+  }
+
+  // Subtle scroll parallax: the cutout and the text drift at slightly
+  // different rates as the hero scrolls past. Applied to the wrapper (not
+  // the image itself) and to .hero-content (not h1/subheadline directly)
+  // so these scroll-driven `y` tweens never target the same property on
+  // the same element as the entrance/idle tweens above.
+  if (heroCutoutWrap) {
+    gsap.to(heroCutoutWrap, {
+      y: 40,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+  if (heroContent) {
+    gsap.to(heroContent, {
+      y: -20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
 
   // Every other major section: fade in + slide up as it enters the viewport,
   // once per page load (does not replay when scrolling back up).
