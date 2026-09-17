@@ -18,6 +18,10 @@
   --myanmar-white: #ffffff;
   --gold-accent: #d4af37;
   --gold-deep: #8b6914;
+  /* 10% darkened gold-deep — keeps white hero text at a comfortable 6:1+
+     contrast; gold-deep and gold-accent alone are too light for that once
+     text sits more than ~10-15% of the way toward them (see hero rule). */
+  --gold-deep-dark: #7d5e12;
 
   /* Semantic tokens built from the palette above */
   --color-bg: #fffaf0;
@@ -111,10 +115,16 @@ p {
   max-width: none;
   text-align: center;
   padding: 5rem 1.25rem;
+  /* Stays dark (gold-deep-dark) through 85% of the hero's height, which
+     comfortably covers every line of text, then blooms into gold-accent
+     and myanmar-yellow only in the final stretch below all of it — the
+     visible "gold gradient" flourish without dragging white text through
+     colors too light for it to stay readable against. */
   background: linear-gradient(
     160deg,
-    var(--gold-deep) 0%,
-    var(--gold-accent) 45%,
+    var(--gold-deep-dark) 0%,
+    var(--gold-deep-dark) 85%,
+    var(--gold-accent) 95%,
     var(--myanmar-yellow) 100%
   );
   color: var(--color-surface);
@@ -123,26 +133,29 @@ p {
 
 .hero h1 {
   color: var(--color-surface);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
 .hero .subheadline {
   font-size: 1.15rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-surface);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero .intro-line {
   max-width: 32rem;
   margin-left: auto;
   margin-right: auto;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-surface);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero-credit {
   margin-top: 2rem;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--color-surface);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ---------- Name section ---------- */
@@ -154,6 +167,16 @@ p {
 
 .quick-facts li {
   margin-bottom: 0.5rem;
+}
+
+.pull-quote {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--gold-accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold-deep);
 }
 
 /* ---------- Relics ---------- */
@@ -200,12 +223,12 @@ p {
 
 .relic-card[data-direction='south'] .relic-direction {
   background: var(--myanmar-green);
-  color: var(--color-surface);
+  color: #000000;
 }
 
 .relic-card[data-direction='west'] .relic-direction {
   background: var(--myanmar-red);
-  color: var(--color-surface);
+  color: #000000;
 }
 
 .relic-card[data-direction='north'] .relic-direction {
@@ -280,7 +303,9 @@ p {
   color: var(--color-surface);
   border: none;
   border-radius: 4px;
-  background: linear-gradient(135deg, var(--gold-deep), var(--gold-accent));
+  /* gold-accent alone only gives white text 2.1:1 contrast — same issue as
+     the hero gradient, same fix: keep both stops within the darker range. */
+  background: linear-gradient(135deg, var(--gold-deep-dark), var(--gold-deep));
   cursor: pointer;
   transition: filter 0.2s ease, transform 0.2s ease;
 }

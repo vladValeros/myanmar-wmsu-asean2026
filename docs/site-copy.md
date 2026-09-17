@@ -1,5 +1,5 @@
 # Shwedagon Pagoda — Site Copy
-**PhiCSS x College of Architecture x College Student Council, CCS**
+**College of Architecture x College Student Council, CCS**
 **WMSU ASEAN Celebration 2026 — Representing Myanmar**
 
 > Notes for the dev build are in *italicized brackets*. Everything else is copy-ready text for the page.
@@ -20,7 +20,7 @@ Rising above the city of Yangon, the Shwedagon Pagoda has stood as Myanmar's mos
 *[Section notes: full-bleed hero with the pagoda render or hero photo, gold gradient overlay, Myanmar flag colors as accent, scroll-down indicator.]*
 
 **Footer credit line (small text, bottom of hero):**
-An ASEAN Week 2026 collaboration between the College of Computing Studies and the College of Architecture, Western Mindanao State University. Digital experience by PhiCSS-WMSU.
+An ASEAN Week 2026 collaboration between the College of Architecture and the College of Computing Studies, Western Mindanao State University.
 
 ---
 
@@ -32,12 +32,17 @@ Shwedagon Zedi Daw
 **Body:**
 Its formal name, *Shwedagon Zedi Daw*, translates to "The Great Golden Mountain Stupa." The name is fitting. The stupa's brick plinth is layered with genuine gold plates, and the bell-shaped structure above it is covered in gold from base to spire, a tradition of devotion that began in the 15th century when Queen Shin Sawbu donated her own weight in gold to the pagoda. Devotees and monarchs alike have continued the practice ever since, each layer of gold an act of merit as much as an act of maintenance.
 
+At its summit sits the *hti*, an umbrella-shaped crown embedded with thousands of diamonds, rubies, and other precious stones, crowned by a single large diamond that catches the light from every angle. It's this combination, gold below and gemstones above, that has earned the Shwedagon its local nickname: the Crown of Burma.
+
 **Quick facts (for a stat strip or sidebar):**
 - Height: approximately 99 meters (326 feet), rising to around 112 meters including the crowning umbrella
 - Location: Singuttara Hill, Yangon, Myanmar
 - Status: the most sacred Buddhist stupa in Myanmar
 
-*[Section notes: good spot for the auto-rotating 3D preview thumbnail that leads into the AR section later, or a gold-leaf texture close-up image.]*
+**Closing line (pull-quote style):**
+Writer Somerset Maugham, seeing it for the first time in 1930, described the pagoda as glistening "like a sudden hope in the dark night of the soul."
+
+*[Section notes: good spot for the auto-rotating 3D preview thumbnail that leads into the AR section later, or a gold-leaf texture close-up image. The pull-quote is a real, verified line from Maugham's "The Gentleman in the Parlour" (1930), keep the attribution attached if it's styled as a standalone quote block.]*
 
 ---
 
@@ -135,14 +140,14 @@ This booth is our small tribute to that story, brought to life by students of We
 ## 8. Closing / Credits
 
 **Section title:**
-Cogito. Computo. Surgo.
+Built Together
 
 **Body:**
-Presented by the Philippine Computing Students Society (PhiCSS-WMSU), in collaboration with the College of Architecture and the College Student Council of the College of Computing Studies, for the WMSU ASEAN Celebration 2026: ASEAN Tablescape, A Taste of Culture.
+Presented by the College of Architecture, together with the College of Computing Studies and its College Student Council, for the WMSU ASEAN Celebration 2026: ASEAN Tablescape, A Taste of Culture.
 
 **Small print:**
 Historical references drawn from the UNESCO World Heritage Centre's tentative list nomination for Shwedagon Pagoda on Singuttara Hill, and publicly available historical sources on Burmese Buddhist heritage.
 
 This work is based on "ShweDagon Pagoda by Kyaw Lin Htet" (https://sketchfab.com/3d-models/shwedagon-pagoda-by-kyaw-lin-htet-ffca3e0400144a48aad10cd314364fd5) by kaungkaung159 (https://sketchfab.com/kaungkaung159) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 
-*[Section notes: this closing motto ties back to PhiCSS's own brand voice per the brand guidelines doc, feel free to drop if it feels like scope creep for a Myanmar-focused page. The 3D model credit line directly above is not optional, it's the exact text the CC-BY-4.0 license requires, keep it verbatim.]*
+*[Section notes: the 3D model credit line directly above is not optional, it's the exact text the CC-BY-4.0 license requires, keep it verbatim.]*
