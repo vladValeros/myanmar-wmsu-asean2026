@@ -134,7 +134,7 @@ This booth is our small tribute to that story, brought to life by students of We
 Built Together
 
 **Body:**
-Presented by the College of Architecture, together with the College of Computing Studies and its College Student Council, for the WMSU ASEAN Celebration 2026.
+Presented by the College of Architecture, together with the College of Computing Studies and its College Student Council, through the Philippine Computing Students Society - WMSU (PhiCSS-WMSU) (phicsswmsu.org), for the WMSU ASEAN Celebration 2026.
 
 **Small print:**
 Historical references drawn from the UNESCO World Heritage Centre's tentative list nomination for Shwedagon Pagoda on Singuttara Hill, and publicly available historical sources on Burmese Buddhist heritage.
