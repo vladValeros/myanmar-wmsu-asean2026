@@ -11,10 +11,7 @@
 **Headline:**
 Shwedagon Pagoda
 
-**Subheadline:**
-The Great Golden Mountain of Myanmar
-
-*[Section notes: full-bleed hero with the pagoda photo, gold-tinted scrim, Myanmar flag colors as accent. The intro line and footer credit line that used to live here have been removed — the full credits already live in Section 8 with logos, no need to duplicate them in the hero. Headline renders in all caps via CSS `text-transform: uppercase`; the copy itself stays title case here.]*
+*[Section notes: full-bleed hero with the pagoda photo, gold-tinted scrim, Myanmar flag colors as accent. The subheadline, intro line, and footer credit line that used to live here have all been removed — the hero is headline-only now, styled like the physical booth's printed poster (giant two-line "SHWEDAGON" / "PAGODA" treatment, spire rising through the text). Full credits already live in Section 8 with logos. Headline renders in all caps via CSS `text-transform: uppercase`; the copy itself stays title case here.]*
 
 ---
 

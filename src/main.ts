@@ -86,34 +86,29 @@ function startsBelowFold(el: Element): boolean {
 }
 
 if (!prefersReducedMotion) {
-  // Hero: headline + subheadline animate in immediately on load, no scroll
-  // needed, then the pagoda cutout fades/scales in on top of them shortly
-  // after, then settles into a slow idle float.
+  // Hero: headline animates in immediately on load, no scroll needed, then
+  // the pagoda cutout fades/scales in on top of it shortly after, then
+  // settles into a slow idle float. At the poster-scale headline size, a
+  // small y-nudge reads as barely-there, so the entrance leans on a bigger
+  // rise + a slight scale-down-to-rest instead, to feel intentional at this
+  // scale rather than an abrupt pop-in.
   const heroCutout = document.querySelector<HTMLElement>('.hero-pagoda-cutout');
   const heroCutoutWrap = document.querySelector<HTMLElement>(
     '.hero-pagoda-cutout-wrap'
   );
-  const heroSubheadline = document.querySelector<HTMLElement>('.hero .subheadline');
   const heroHeadline = document.querySelector<HTMLElement>('.hero h1');
-  // Built as an explicit array (not a combined selector string) because
-  // querySelectorAll/GSAP's selector engine returns matches in DOM order —
-  // h1 comes before .subheadline in the markup (for reading order), which
-  // would silently reverse the intended stagger sequence below.
-  const heroText = [heroSubheadline, heroHeadline].filter(
-    (el): el is HTMLElement => el !== null
-  );
+  const heroHeadlineInner = document.querySelector<HTMLElement>('.hero-h1-inner');
 
   const heroTimeline = gsap.timeline();
-  // Subheadline sits visually above the headline now (CSS `order`), so it
-  // leads the entrance stagger — top-to-bottom reveal matching the new
-  // visual layout, even though the headline stays first in DOM/reading order.
-  heroTimeline.from(heroText, {
-    opacity: 0,
-    y: 20,
-    duration: 0.8,
-    ease: 'power2.out',
-    stagger: 0.1,
-  });
+  if (heroHeadlineInner) {
+    heroTimeline.from(heroHeadlineInner, {
+      opacity: 0,
+      y: 40,
+      scale: 1.04,
+      duration: 0.9,
+      ease: 'power2.out',
+    });
+  }
 
   if (heroCutout) {
     heroTimeline.from(
@@ -124,7 +119,7 @@ if (!prefersReducedMotion) {
         duration: 1,
         ease: 'power2.out',
       },
-      '-=0.3'
+      '-=0.4'
     );
 
     // Gentle idle float, starting only once the entrance above has fully
@@ -140,11 +135,10 @@ if (!prefersReducedMotion) {
     });
   }
 
-  // Subtle scroll parallax: the cutout and the text drift at slightly
+  // Subtle scroll parallax: the cutout and the headline drift at slightly
   // different rates as the hero scrolls past. Applied to the wrapper (not
-  // the image itself) and to the h1/subheadline pair (not the wrapper they
-  // used to share) so these scroll-driven `y` tweens never target the same
-  // property on the same element as the entrance/idle tweens above.
+  // the image itself) so these scroll-driven `y` tweens never target the
+  // same property on the same element as the entrance/idle tweens above.
   if (heroCutoutWrap) {
     gsap.to(heroCutoutWrap, {
       y: 40,
@@ -157,8 +151,8 @@ if (!prefersReducedMotion) {
       },
     });
   }
-  if (heroText.length) {
-    gsap.to(heroText, {
+  if (heroHeadline) {
+    gsap.to(heroHeadline, {
       y: -20,
       ease: 'none',
       scrollTrigger: {
